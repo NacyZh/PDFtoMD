@@ -4,7 +4,6 @@
 
 PDFtoMD 是一个本地桌面软件，用于把一个或多个 PDF 文件转换为 Markdown 文件。软件使用 PySide6 构建图形界面，使用 PyMuPDF 仅提取 PDF 标题用于文件命名，使用 marker 完成 PDF 到 Markdown 的转换。
 
-PDFtoMD 只做 PDF 转 Markdown，不提供 RAG、向量数据库、论文总结、章节识别、元数据 JSON、YAML frontmatter 或云端模型调用。
 
 ## 硬件要求
 
