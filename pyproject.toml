@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdftomd"
+version = "0.1.0"
+description = "Local desktop PDF to Markdown converter powered by marker."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "PDFtoMD" }]
+dependencies = [
+    "PySide6>=6.7",
+    "PyMuPDF>=1.24",
+    "pydantic>=2.7",
+    "marker-pdf>=1.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2",
+    "mypy>=1.10",
+    "pytest>=8.2",
+    "pytest-qt>=4.4",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+pdftomd = "pdftomd.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pdftomd"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/pdftomd",
+    "/tests",
+    "/packaging",
+    "/README.md",
+    "/README_ZH.md",
+    "/PDFtoMD.md",
+    "/pyproject.toml",
+    "/.env.example",
+]
+exclude = [
+    "/.venv",
+    "/.venv.windows",
+    "/.mypy_cache",
+    "/.pytest_cache",
+    "/.ruff_cache",
+    "/.idea",
+    "/build",
+    "/dist",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
+ignore = ["RUF012"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = false
+ignore_missing_imports = true
+disable_error_code = ["no-untyped-call", "no-any-return"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+qt_api = "pyside6"
